@@ -1,5 +1,6 @@
 #!/bin/bash
 # validint--Validates integer input, allowing negative integers too
+# Running the script: validint -17 0 25
 
 validint()
 {
@@ -16,12 +17,15 @@ validint()
     # Is the first character a '-' sign?
     if [ "${number%${number#?}}" = "-" ]; then 
         testvalue="${number#?}"  # Grab all but the first character to test.
+    else 
+        testvalue="$number"
+    fi
 
     # Create a version of the number that has no digits for testing.
     nodigits="$(echo $testvalue | sed 's/[[:digit:]]//g')"
 
     # Check for nondigit characters.
-    if [ ! -z nodigits ]; then
+    if [ ! -z $nodigits ]; then
         echo "Invalid number format! Only digits, no commas, spaces, etc." >&2
         return 1
     fi
@@ -40,7 +44,7 @@ validint()
             return 1
         fi
     fi
-    return 0cle
+    return 0
 }
 
 # Input validation
