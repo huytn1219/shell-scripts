@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echon()
+{
+    echo "$*" | tr -d '\n'
+}
